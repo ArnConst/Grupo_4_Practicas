@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Ticket - TechSolve</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/scripts.js" defer></script>
+    <script src="../data/datos-locales.js" defer></script>
+    <script src="../js/datos.js" defer></script>
+    <script src="../js/registro-tickets.js" defer></script>
 </head>
 
 <body>
@@ -27,14 +29,14 @@
     </header>
 
     <main>
-        
+
         <section class="page-header">
             <h2>Registrar Ticket</h2>
             <p>Usa este formulario para crear un nuevo ticket de soporte técnico.</p>
         </section>
-        
+
         <section class="content-card">
-            <form action="procesar-ticket.php" method="POST" class="form-card">
+            <form id="formularioTicket" class="form-card">
                 <div class="input-group">
                     <label for="categoria">Categoría:</label>
                     <select id="categoria" name="categoria" required>
@@ -48,13 +50,13 @@
 
                 <div class="input-group">
                     <label for="descripcion">Descripción del problema:</label>
-                    <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe el problema..."></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe el problema..." required></textarea>
                 </div>
 
                 <button type="submit" class="boton">Registrar Ticket</button>
+            </form>
         </section>
     </main>
-
 
 </body>
 

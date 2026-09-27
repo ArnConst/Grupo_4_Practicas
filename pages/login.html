@@ -1,14 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--el width=device usa el ancho real de la patalla y el initial-scale=1.0 es el zoom, por ende si ponemos 2.0 se vera el doble-->>
+    <!--el width=device usa el ancho real de la patalla y el initial-scale=1.0 es el zoom, por ende si ponemos 2.0 se vera el doble-->
     <title>Iniciar sesión - TechSolve</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/datos.js" defer></script>
+    <script src="../js/login.js" defer></script>
     <!--Me lleva a styles-->
-    <script src="../js/scripts.js" defer></script>
 </head>
 
 <body>
@@ -52,50 +53,11 @@
                     <p class="error-message" id="errorMessage"></p>
                 </form>
                 <p class="small-text">Prueba con usuario <strong>admin</strong> y contraseña <strong>1234</strong>.</p>
+                <p class="small-text">Empleado <strong>Constanza, Alejandro, Lautaro, Walter, Valeria</strong> y contraseña <strong>1234</strong>.</p>
             </div>
         </section>
     </main>
 
-
-    <script>
-        // Cobtador de usuarios y contraseñas
-        const credentials = [
-            { user: 'admin', password: '1234' },
-            { user: 'empleado', password: 'ticket2026' }
-        ];
-
-        // Obtenemos el formulario y el lugar donde mostraremos mensajes de error.
-        const form = document.getElementById('loginForm');
-        const message = document.getElementById('errorMessage');
-
-        // Cuando el usuario hace clic en "Ingresar" se ejecuta esta función.
-        form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Evita que la página se recargue.
-
-            const userInput = document.getElementById('user').value.trim();
-            const passwordInput = document.getElementById('password').value;
-
-            // Buscamos un usuario que tenga el mismo nombre y contraseña.
-            let matchedUser = null;
-
-            for (let i = 0; i < credentials.length; i++) {
-                const item = credentials[i];
-                if (item.user === userInput && item.password === passwordInput) {
-                    matchedUser = item;
-                    break;
-                }
-            }
-
-            if (matchedUser) {
-                // Si los datos son correctos, guardamos el usuario y vamos a la página de tickets.
-                localStorage.setItem('techsolveUser', matchedUser.user);
-                window.location.href = 'mis-tickets.html';
-            } else {
-                // Si no encontró coincidencia, mostramos un mensaje de error.
-                message.textContent = 'Usuario o contraseña incorrectos. Intenta de nuevo.';
-            }
-        });
-    </script>
 </body>
 
 </html>

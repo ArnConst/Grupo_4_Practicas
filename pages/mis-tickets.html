@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Tickets - TechSolve</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/scripts.js" defer></script>
+    <script src="../data/datos-locales.js" defer></script>
+    <script src="../js/datos.js" defer></script>
+    <script src="../js/mis-tickets.js" defer></script>
+
 </head>
 
 <body>
@@ -47,25 +50,25 @@
             </table>
             <button type="button" class="boton" id="historialTicketsButton">Ver Historial</button>
             <div id="historialPanel" class="content-card" hidden>
-    <h3>Editar mis tickets</h3>
+                <h3>Editar mis tickets</h3>
 
-    <label for="selectorTicket">Elegí un ticket:</label>
-    <select id="selectorTicket"></select>
+                <label for="selectorTicket">Elegí un ticket:</label>
+                <select id="selectorTicket"></select>
 
-    <form id="editarTicketForm">
-        <label for="editarCategoria">Categoría:</label>
-        <input id="editarCategoria" required>
+                <form id="editarTicketForm">
+                    <label for="editarCategoria">Categoría:</label>
+                    <input id="editarCategoria" required>
 
-        <label for="editarDescripcion">Descripción:</label>
-        <textarea id="editarDescripcion" rows="3" required></textarea>
+                    <label for="editarDescripcion">Descripción:</label>
+                    <textarea id="editarDescripcion" rows="3" required></textarea>
 
-        <button type="submit" class="boton">
-            Guardar cambios
-        </button>
-    </form>
+                    <button type="submit" class="boton">
+                        Guardar cambios
+                    </button>
+                </form>
 
-    <p id="mensajeEdicion" role="status"></p>
-</div>
+                <p id="mensajeEdicion" role="status"></p>
+            </div>
         </section>
         <section class="content-card">
             <p id="welcomeText"></p>
@@ -73,23 +76,6 @@
         </section>
     </main>
 
-
-
-    <script>
-        const user = localStorage.getItem('techsolveUser');
-
-        if (!user) {
-            window.location.href = 'login.html';
-        } else {
-            document.getElementById('welcomeText').textContent = `Hola ${user}, aquí verás tus tickets activos.`;
-        }
-
-        document.getElementById('logoutButton').addEventListener('click', () => {
-            localStorage.removeItem('techsolveUser');
-            localStorage.removeItem("techsolveRol");
-            window.location.href = 'login.html';
-        });
-    </script>
 </body>
 
 </html>
