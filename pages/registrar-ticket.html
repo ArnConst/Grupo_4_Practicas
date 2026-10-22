@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../data/datos-locales.js" defer></script>
     <script src="../js/datos.js" defer></script>
+    <script src="../js/navegacion.js" defer></script>
     <script src="../js/registro-tickets.js" defer></script>
 </head>
 
@@ -23,7 +24,7 @@
                 <li><a href="login.html">Iniciar sesión</a></li>
                 <li><a href="registrar-ticket.html" class="active">Registrar Ticket</a></li>
                 <li><a href="mis-tickets.html">Mis Tickets</a></li>
-                <li><a href="panel-tecnico.html">Panel Técnico</a></li>
+                <li data-panel-tecnico hidden><a href="panel-tecnico.html">Panel Técnico</a></li>
             </ul>
         </nav>
     </header>
@@ -35,25 +36,33 @@
             <p>Usa este formulario para crear un nuevo ticket de soporte técnico.</p>
         </section>
 
-        <section class="content-card">
-            <form id="formularioTicket" class="form-card">
-                <div class="input-group">
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria" required>
-                        <option value="">Seleccione una categoría</option>
-                        <option value="hardware">Hardware</option>
-                        <option value="software">Software</option>
-                        <option value="red">Red</option>
-                        <option value="otros">Otros</option>
-                    </select>
+        <section class="ticket-registration">
+            <form id="formularioTicket" class="form-card ticket-form">
+                <div class="ticket-form-header">
+                    <p class="ticket-form-kicker">Nueva solicitud</p>
+                    <h3>Detalles del incidente</h3>
+                    <p>Indicá la categoría y describí el problema para que el equipo técnico pueda ayudarte.</p>
                 </div>
 
-                <div class="input-group">
-                    <label for="descripcion">Descripción del problema:</label>
-                    <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe el problema..." required></textarea>
-                </div>
+                <div class="ticket-form-fields">
+                    <div class="input-group">
+                        <label for="categoria">Categoría:</label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Seleccione una categoría</option>
+                            <option value="hardware">Hardware</option>
+                            <option value="software">Software</option>
+                            <option value="red">Red</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
 
-                <button type="submit" class="boton">Registrar Ticket</button>
+                    <div class="input-group">
+                        <label for="descripcion">Descripción del problema:</label>
+                        <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describe el problema..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="boton ticket-submit">Registrar Ticket</button>
+                </div>
             </form>
         </section>
     </main>

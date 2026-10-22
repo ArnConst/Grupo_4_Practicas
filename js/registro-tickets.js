@@ -1,7 +1,7 @@
 (() => {
     "use strict";
 
-    if (!TechSolve.requerirSesion()) return;
+    if (!TechSolve.requerirSesion("empleado")) return;
     const formulario = document.getElementById("formularioTicket");
     const boton = formulario.querySelector('button[type="submit"]');
     const descripcion = document.getElementById("descripcion");
@@ -10,7 +10,7 @@
 
     formulario.addEventListener("submit", async event => {
         event.preventDefault();
-        const sesion = TechSolve.requerirSesion();
+        const sesion = TechSolve.requerirSesion("empleado");
         if (!sesion) return;
 
         const categoria = document.getElementById("categoria");

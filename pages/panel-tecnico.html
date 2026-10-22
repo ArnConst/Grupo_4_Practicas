@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../data/datos-locales.js" defer></script>
     <script src="../js/datos.js" defer></script>
+    <script src="../js/navegacion.js" defer></script>
     <script src="../js/panel-tecnico.js" defer></script>
 </head>
 
@@ -23,7 +24,7 @@
                 <li><a href="login.html">Iniciar sesión</a></li>
                 <li><a href="registrar-ticket.html">Registrar Ticket</a></li>
                 <li><a href="mis-tickets.html">Mis Tickets</a></li>
-                <li><a href="panel-tecnico.html" class="active">Panel Técnico</a></li>
+                <li data-panel-tecnico hidden><a href="panel-tecnico.html" class="active">Panel Técnico</a></li>
             </ul>
         </nav>
     </header>
@@ -36,7 +37,19 @@
 
         <section class="content-card">
             <h3>Ticket registrados en el sistema</h3>
-            <div id="panelTicketsContainer"></div>
+            <table class="tabla-tickets">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody id="panelTicketsContainer"></tbody>
+            </table>
+            <p id="panelTicketsMessage" role="status"></p>
         </section>
 
     </main>

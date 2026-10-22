@@ -31,7 +31,8 @@ window.TechSolve = (() => {
             window.location.replace("login.html");
             return null;
         }
-        if (rol && sesion.rol !== rol) {
+        // El admin (rol técnico) puede acceder y ver todas las páginas del sistema.
+        if (rol && sesion.rol !== rol && sesion.rol !== "tecnico" && sesion.usuario !== "admin") {
             window.location.replace("mis-tickets.html");
             return null;
         }
@@ -41,7 +42,8 @@ window.TechSolve = (() => {
     function cerrarSesion() {
         localStorage.removeItem("techsolveUser");
         localStorage.removeItem("techsolveRol");
-        window.location.href = "login.html";
+        const enlaceLogin = document.querySelector('nav a[href$="login.html"]');
+        window.location.href = enlaceLogin ? enlaceLogin.getAttribute("href") : "login.html";
     }
 
     function validarTickets(tickets) {
@@ -119,7 +121,11 @@ window.TechSolve = (() => {
 
     function puedeEditar(ticket) {
         const sesion = obtenerSesion();
-        return Boolean(sesion && sesion.rol === "empleado" && ticket.usuario === sesion.usuario);
+        return Boolean(sesion && (
+            sesion.rol === "tecnico" ||
+            sesion.usuario === "admin" ||
+            (sesion.rol === "empleado" && ticket.usuario === sesion.usuario)
+        ));
     }
 
     return {

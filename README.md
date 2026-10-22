@@ -14,5 +14,3 @@ Muestra de tickects para el tecnico
 
 -se agrego un usuario para cada empleado y sus respectivas creedenciales
 cada uno podra registrar sus tickets de forma independiente
-
-
