@@ -2,8 +2,8 @@
     "use strict";
 
     const credenciales = [
-        { usuario: "admin", clave: "1234", rol: "tecnico" },
-        { usuario: "empleado", clave: "ticket2026", rol: "empleado" },
+        { usuario: "tecnico", clave: "1234", rol: "tecnico" },
+        { usuario: "empleado", clave: "1234", rol: "empleado" },
         { usuario: "Constanza", clave: "1234", rol: "empleado" },
         { usuario: "Walter", clave: "1234", rol: "empleado" },
         { usuario: "Lautaro", clave: "1234", rol: "empleado" },
