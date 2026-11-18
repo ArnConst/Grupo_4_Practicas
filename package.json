@@ -1,0 +1,12 @@
+{
+  "name": "techsolve",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema sencillo de tickets con Node.js y Netlify",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "11.1.9"
+  }
+}

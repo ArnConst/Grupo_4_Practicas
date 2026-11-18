@@ -1,0 +1,9 @@
+[build]
+  command = "npm install"
+  publish = "frontend"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+[server]
+  includedFiles = ["backend/data/datos.json"]

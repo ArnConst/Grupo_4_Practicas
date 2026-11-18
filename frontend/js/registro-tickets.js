@@ -10,8 +10,7 @@
 
     formulario.addEventListener("submit", async event => {
         event.preventDefault();
-        const sesion = TechSolve.requerirSesion("empleado");
-        if (!sesion) return;
+        if (!TechSolve.requerirSesion("empleado")) return;
 
         const categoria = document.getElementById("categoria");
         descripcion.setCustomValidity(descripcion.value.trim() ? "" : "Describí el problema.");
@@ -19,20 +18,14 @@
 
         boton.disabled = true;
         try {
-            const tickets = await TechSolve.obtenerTickets();
-            tickets.push({
-                id: TechSolve.siguienteId(tickets),
-                usuario: sesion.usuario,
+            const ticket = await TechSolve.crearTicket({
                 categoria: categoria.options[categoria.selectedIndex].text,
-                descripcion: descripcion.value.trim(),
-                estado: "Pendiente",
-                prioridad: "Media"
+                descripcion: descripcion.value.trim()
             });
-            TechSolve.guardarTickets(tickets);
-            alert("Ticket registrado correctamente");
+            alert("Ticket " + ticket.id + " registrado correctamente.");
             formulario.reset();
         } catch (error) {
-            alert("No se pudo guardar el ticket. " + error.message);
+            alert("No se pudo registrar el ticket. " + error.message);
         } finally {
             boton.disabled = false;
         }

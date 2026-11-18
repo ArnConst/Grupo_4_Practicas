@@ -1,0 +1,3 @@
+backend/data/tickets.json
+node_modules/
+.netlify/

@@ -4,7 +4,7 @@
     const sesion = TechSolve.requerirSesion();
     if (!sesion) return;
     document.getElementById("welcomeText").textContent =
-        `Hola ${sesion.usuario}, aquí verás tus tickets activos.`;
+        "Hola " + sesion.usuario + ", aquí verás tus tickets activos.";
     document.getElementById("logoutButton").addEventListener("click", TechSolve.cerrarSesion);
 
     const tabla = document.getElementById("ticketsTableBody");
@@ -68,17 +68,17 @@
 
         botonGuardar.disabled = true;
         try {
-            // Vuelve a leer los datos para conservar tickets creados desde otras páginas.
-            tickets = await TechSolve.obtenerTickets();
             const ticket = tickets.find(item => item.id === id);
             if (!ticket || !TechSolve.puedeEditar(ticket)) {
                 mensaje.textContent = "No podés editar este ticket.";
                 return;
             }
 
-            ticket.categoria = nuevaCategoria;
-            ticket.descripcion = nuevaDescripcion;
-            TechSolve.guardarTickets(tickets);
+            await TechSolve.actualizarTicket(id, {
+                categoria: nuevaCategoria,
+                descripcion: nuevaDescripcion
+            });
+            tickets = await TechSolve.obtenerTickets();
             mostrarTickets();
             selector.value = id;
             completarFormulario();

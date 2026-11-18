@@ -4,7 +4,7 @@
     if (!TechSolve.requerirSesion("tecnico")) return;
     const tabla = document.getElementById("panelTicketsContainer");
     const mensaje = document.getElementById("panelTicketsMessage");
-    const estados = ["Abierto", "En proceso", "Pendiente"];
+    const estados = ["Abierto", "En proceso", "Pendiente", "Resuelto", "Cerrado"];
 
     function crearSelectorEstado(ticket) {
         const selector = document.createElement("select");
@@ -24,13 +24,7 @@
             mensaje.textContent = "";
 
             try {
-                // Vuelve a leer los tickets para no perder cambios hechos desde otra página.
-                const tickets = await TechSolve.obtenerTickets();
-                const ticketActual = tickets.find(item => item.id === ticket.id);
-                if (!ticketActual) throw new Error("No se encontró el ticket.");
-
-                ticketActual.estado = nuevoEstado;
-                TechSolve.guardarTickets(tickets);
+                await TechSolve.actualizarTicket(ticket.id, { estado: nuevoEstado });
                 selector.dataset.estado = nuevoEstado;
                 mensaje.textContent = "Estado actualizado correctamente.";
             } catch (error) {

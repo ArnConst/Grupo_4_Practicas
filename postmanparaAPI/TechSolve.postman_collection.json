@@ -1,0 +1,86 @@
+{
+  "info": {
+    "name": "TechSolve API",
+    "description": "Solicitudes de ejemplo para el backend local de TechSolve.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:3000" },
+    { "key": "token", "value": "" },
+    { "key": "ticketId", "value": "TS01" }
+  ],
+  "item": [
+    {
+      "name": "Salud",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/health" }
+    },
+    {
+      "name": "Iniciar sesión como empleado",
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] }
+      }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"usuario\": \"empleado\",\n  \"clave\": \"1234\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Listar mis tickets",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/api/tickets"
+      }
+    },
+    {
+      "name": "Crear ticket",
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('ticketId', pm.response.json().id);"] }
+      }],
+      "request": {
+        "method": "POST",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"categoria\": \"Hardware\",\n  \"descripcion\": \"La computadora no enciende\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/tickets"
+      }
+    },
+    {
+      "name": "Editar mi ticket",
+      "request": {
+        "method": "PATCH",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"categoria\": \"Software\",\n  \"descripcion\": \"No puedo abrir el correo\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/tickets/{{ticketId}}"
+      }
+    },
+    {
+      "name": "Iniciar sesión como técnico",
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] }
+      }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"usuario\": \"tecnico\",\n  \"clave\": \"1234\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Cambiar estado como técnico",
+      "request": {
+        "method": "PATCH",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"estado\": \"En proceso\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/tickets/{{ticketId}}"
+      }
+    }
+  ]
+}
